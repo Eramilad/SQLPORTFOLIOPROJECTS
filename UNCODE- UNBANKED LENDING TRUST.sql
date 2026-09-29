@@ -8,6 +8,25 @@
   FROM [unbanked lending trust].[dbo].[airtime_topup_history]
 
 
+
+/*
+   ============================================================
+   Trusting the Unbanked — Alt-Data Credit Scoring
+   ============================================================
+   IMPORTANT LIMITATION: loan_status (Approved/Pending/Rejected) 
+   in this dataset was synthetically generated with no built-in 
+   relationship to the alt-data fields below (airtime, mobile 
+   money, utility payments, market sales). There is also no 
+   repayment-outcome table in this database.
+
+   That means the validation section near the end of this script 
+   checks whether the alt-data score aligns with EXISTING approval 
+   decisions — not whether it predicts actual repayment. Results 
+   showed no consistent trend, which is an honest and expected 
+   outcome given the synthetic labels aren't causally tied to the 
+   inputs. This script demonstrates the SQL pipeline and scoring 
+   methodology, not a validated predictive model.
+*/
   --Data Cleaning
 
   --Inspect the network provider and topup type column
@@ -1075,3 +1094,22 @@ SELECT
 
 FROM normalized
 ORDER BY alt_data_credit_score DESC;
+
+/*
+   ============================================================
+   Trusting the Unbanked — Alt-Data Credit Scoring
+   ============================================================
+   IMPORTANT LIMITATION: loan_status (Approved/Pending/Rejected) 
+   in this dataset was synthetically generated with no built-in 
+   relationship to the alt-data fields below (airtime, mobile 
+   money, utility payments, market sales). There is also no 
+   repayment-outcome table in this database.
+
+   That means the validation section near the end of this script 
+   checks whether the alt-data score aligns with EXISTING approval 
+   decisions — not whether it predicts actual repayment. Results 
+   showed no consistent trend, which is an honest and expected 
+   outcome given the synthetic labels aren't causally tied to the 
+   inputs. This script demonstrates the SQL pipeline and scoring 
+   methodology, not a validated predictive model.
+*/
